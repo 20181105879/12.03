@@ -1,88 +1,77 @@
 #include <iostream>
+#include <algorithm> 
+//#include <vector>
+#include <list>
 using namespace std;
-int a[10000000];
-int b[10000000];
-int c[10000000];
-int d[10000000];
 int main()
 {
-	int n,m;
+	long long n,m;
 	cin>>n;
-	int q,w;
-	for(int i=0;i<n;i++)
+	char x;
+	while(n)
 	{
-		cin>>q>>w;
-		a[w]+=q;
-	}
-	cin>>m;
-	for(int i=0;i<m;i++)
-	{
-		cin>>q>>w;
-		b[w]+=q;
-	}
-	for(int i=0;i<11000;i++)
-	{
+		cin>>m;
+		char s,w;
+		list<char>s1;
+		list<char>s2;
+		list<char>w1;
+		list<char>w2;
+		cin>>s;
 		
-		if(a[i]!=0)
+		for(long long i=1;i<n;i++)
 		{
-			for(int j=0;j<11000;j++)
+			
+
+		  	cin>>x;
+		  	if(x<s)
+		  	{
+		  	s1.push_back(x);
+			}
+			else
 			{
-				if(b[j]!=0)
+			s2.push_back(x);
+			}
+		}
+		for(long long i=0;i<m;i++)
+		{
+			cin>>w;
+			for(long long j=1;j<n;j++)
+			{
+				cin>>x;
+				if(x<w)
+			  	{
+			  	w1.push_back(x);
+				}
+				else
 				{
-					c[i+j]+=(a[i]*b[j]);
+			    w2.push_back(x);
+				}	
+			}
+			if(w!=s)
+			{
+				cout<<"No"<<endl; 
+			}
+			else
+			{
+				
+				if(equal(s1.begin(),s1.end(),w1.begin())&&equal(s2.begin(),s2.end(),w2.begin()))
+				{
+					cout<<"Yes"<<endl;
+				}
+				else
+				{
+					cout<<"No"<<endl; 
 				}
 			}
+		w1.clear();
+		w2.clear();			
 		}
+		cin>>n;
+		s1.clear();
+		s2.clear();
 		
 	}
-	int count=0;
-	for(int i=10005;i>=0;i--)
-	{
-		if(c[i]!=0)
-		{
-			if(count!=0)
-			{
-				cout<<" "<<c[i]<<" "<<i;
-			}
-			else
-			{
-				cout<<c[i]<<" "<<i;
-			}
-			count++;
-		}
-	}
-	if(count==0)
-	{
-		cout<<0<<" "<<0; 
-	}
-	cout<<endl;
-	for(int i=0;i<10005;i++)
-	{
-		if(a[i]!=0||b[i]!=0)
-		{
-			d[i]=a[i]+b[i];
-		}
-	}
-	count=0;
-	for(int i=10005;i>=0;i--)
-	{
-		if(d[i]!=0)
-		{
-			if(count!=0)
-			{
-				cout<<" "<<d[i]<<" "<<i;
-			}
-			else
-			{
-				cout<<d[i]<<" "<<i;
-			}
-			count++;
-		}
-	}
-	if(count==0)
-	{
-		cout<<0<<" "<<0; 
-	}
+
 
 	return 0;
-}
+ } 
